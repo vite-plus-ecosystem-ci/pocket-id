@@ -146,7 +146,7 @@ jobs:
       matrix:
         include:
           - name: Linux
-            runner: depot-ubuntu-latest
+            runner: ubuntu-latest
           - name: Windows
             runner: windows-latest
     runs-on: ${{ matrix.runner }}
