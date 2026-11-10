@@ -35,7 +35,7 @@ jobs:
   prepare:
     name: Prepare release
     needs: translations
-    runs-on: depot-ubuntu-latest
+    runs-on: ubuntu-latest
     outputs:
       tag: ${{ steps.version.outputs.tag }}
       ui-tag: ${{ steps.ui-version.outputs.tag }}
@@ -173,7 +173,7 @@ jobs:
     name: Build and attest
     needs: prepare
     if: needs.prepare.outputs.tag != ''
-    runs-on: depot-ubuntu-24.04-16
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
       packages: write
@@ -279,7 +279,7 @@ jobs:
   publish:
     name: Publish release
     needs: [prepare, build]
-    runs-on: depot-ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Create bot app token
@@ -303,7 +303,7 @@ jobs:
     name: Publish UI package
     needs: [prepare, publish]
     if: needs.prepare.outputs.ui-tag != ''
-    runs-on: depot-ubuntu-latest
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       # Needed by npm trusted publishing and provenance
